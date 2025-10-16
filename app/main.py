@@ -13,7 +13,8 @@ from fastapi.staticfiles import StaticFiles
 from .config import get_settings
 from .db import SessionLocal, engine
 from .models import Base, ChatSession, Message
-from .openai_client import create_chat_completion
+from .openai_client import create_chat_completion, run_structured_chain_with_tools
+from .tools import DEFAULT_SYSTEM_TOOL_SOP
 
 from sqlalchemy.orm import Session
 from sqlalchemy import select, func
@@ -310,7 +311,9 @@ async def ws_chat(
         # send history
         history = await _load_history(db, chat_session.id, limit=100)
         if history:
-            await websocket.send_json({"type": "history", "messages": history})
+            visible = [m for m in history if m.get("role") in ("assistant", "user")]
+            if visible:
+                await websocket.send_json({"type": "history", "messages": visible})
 
         # main loop
         while True:
@@ -340,10 +343,9 @@ async def ws_chat(
                 db.commit()
                 db.refresh(user_msg)
 
-                # build conversation for OpenAI
-                messages: List[Dict[str, str]] = []
-                if chat_session.system_prompt:
-                    messages.append({"role": "system", "content": chat_session.system_prompt})
+                # build conversation for OpenAI (with SOP default)
+                system_prompt = chat_session.system_prompt or DEFAULT_SYSTEM_TOOL_SOP
+                messages: List[Dict[str, Any]] = [{"role": "system", "content": system_prompt}]
                 # include full history (could be optimized)
                 prior = await _load_history(db, chat_session.id, limit=100)
                 for m in prior:
@@ -351,21 +353,44 @@ async def ws_chat(
                         messages.append({"role": m["role"], "content": m["content"]})
                 messages.append({"role": "user", "content": content})
 
-                # call OpenAI (sync under the hood, using executor)
+                # call OpenAI with structured tool-chain pipeline
                 start_ns = time.perf_counter_ns()
                 try:
-                    completion = await create_chat_completion(messages, model=chat_session.model)
+                    result = await run_structured_chain_with_tools(messages, model=chat_session.model)
                 except Exception as e:
                     await websocket.send_json({"type": "error", "message": f"OpenAI error: {e}"})
                     continue
                 latency_ms = int((time.perf_counter_ns() - start_ns) / 1_000_000)
 
-                assistant_text = completion.choices[0].message.content or ""
-                usage = getattr(completion, "usage", None)
-                prompt_tokens = getattr(usage, "prompt_tokens", None) if usage else None
-                completion_tokens = getattr(usage, "completion_tokens", None) if usage else None
-                total_tokens = getattr(usage, "total_tokens", None) if usage else None
-                finish_reason = completion.choices[0].finish_reason
+                assistant_text = result.get("assistant_text", "")
+                usage = result.get("usage") or {}
+                prompt_tokens = usage.get("prompt_tokens")
+                completion_tokens = usage.get("completion_tokens")
+                total_tokens = usage.get("total_tokens")
+                finish_reason = "stop"
+
+                # persist assistant tool call message and tool results (not shown to user)
+                import json as _json
+                if result.get("assistant_tool_message"):
+                    seq = await _get_next_sequence(db, chat_session.id)
+                    db.add(Message(
+                        session_id=chat_session.id,
+                        role="assistant_tool",
+                        content=_json.dumps(result["assistant_tool_message"], ensure_ascii=False),
+                        sequence=seq,
+                        model=chat_session.model,
+                    ))
+                    db.commit()
+                for tr in (result.get("tool_results") or []):
+                    seq = await _get_next_sequence(db, chat_session.id)
+                    db.add(Message(
+                        session_id=chat_session.id,
+                        role="tool",
+                        content=_json.dumps(tr, ensure_ascii=False),
+                        sequence=seq,
+                        model=None,
+                    ))
+                    db.commit()
 
                 # stream to client in small chunks for smooth UI
                 for chunk in _chunk_text(assistant_text, size=24):

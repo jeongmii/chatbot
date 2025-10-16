@@ -1,0 +1,119 @@
+Defaulting to user installation because normal site-packages is not writeable
+Collecting fastapi<1.0,>=0.110 (from -r requirements.txt (line 1))
+  Downloading fastapi-0.119.0-py3-none-any.whl.metadata (28 kB)
+Collecting uvicorn<1.0,>=0.23 (from uvicorn[standard]<1.0,>=0.23->-r requirements.txt (line 2))
+  Downloading uvicorn-0.37.0-py3-none-any.whl.metadata (6.6 kB)
+Collecting sqlalchemy<3.0,>=2.0 (from -r requirements.txt (line 3))
+  Downloading sqlalchemy-2.0.44-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (9.5 kB)
+Collecting pydantic<3.0,>=2.5 (from -r requirements.txt (line 4))
+  Downloading pydantic-2.12.2-py3-none-any.whl.metadata (85 kB)
+Collecting pydantic-settings<3.0,>=2.2 (from -r requirements.txt (line 5))
+  Downloading pydantic_settings-2.11.0-py3-none-any.whl.metadata (3.4 kB)
+Collecting openai>=1.40.0 (from -r requirements.txt (line 6))
+  Downloading openai-2.4.0-py3-none-any.whl.metadata (29 kB)
+Collecting python-dotenv<2.0,>=1.0 (from -r requirements.txt (line 7))
+  Downloading python_dotenv-1.1.1-py3-none-any.whl.metadata (24 kB)
+Collecting aiofiles<24.0,>=23.2 (from -r requirements.txt (line 8))
+  Downloading aiofiles-23.2.1-py3-none-any.whl.metadata (9.7 kB)
+Collecting starlette<0.49.0,>=0.40.0 (from fastapi<1.0,>=0.110->-r requirements.txt (line 1))
+  Downloading starlette-0.48.0-py3-none-any.whl.metadata (6.3 kB)
+Collecting typing-extensions>=4.8.0 (from fastapi<1.0,>=0.110->-r requirements.txt (line 1))
+  Downloading typing_extensions-4.15.0-py3-none-any.whl.metadata (3.3 kB)
+Collecting click>=7.0 (from uvicorn<1.0,>=0.23->uvicorn[standard]<1.0,>=0.23->-r requirements.txt (line 2))
+  Downloading click-8.3.0-py3-none-any.whl.metadata (2.6 kB)
+Collecting h11>=0.8 (from uvicorn<1.0,>=0.23->uvicorn[standard]<1.0,>=0.23->-r requirements.txt (line 2))
+  Downloading h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+Collecting greenlet>=1 (from sqlalchemy<3.0,>=2.0->-r requirements.txt (line 3))
+  Downloading greenlet-3.2.4-cp313-cp313-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (4.1 kB)
+Collecting annotated-types>=0.6.0 (from pydantic<3.0,>=2.5->-r requirements.txt (line 4))
+  Downloading annotated_types-0.7.0-py3-none-any.whl.metadata (15 kB)
+Collecting pydantic-core==2.41.4 (from pydantic<3.0,>=2.5->-r requirements.txt (line 4))
+  Downloading pydantic_core-2.41.4-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (7.3 kB)
+Collecting typing-inspection>=0.4.2 (from pydantic<3.0,>=2.5->-r requirements.txt (line 4))
+  Downloading typing_inspection-0.4.2-py3-none-any.whl.metadata (2.6 kB)
+Collecting anyio<5,>=3.5.0 (from openai>=1.40.0->-r requirements.txt (line 6))
+  Downloading anyio-4.11.0-py3-none-any.whl.metadata (4.1 kB)
+Collecting distro<2,>=1.7.0 (from openai>=1.40.0->-r requirements.txt (line 6))
+  Downloading distro-1.9.0-py3-none-any.whl.metadata (6.8 kB)
+Collecting httpx<1,>=0.23.0 (from openai>=1.40.0->-r requirements.txt (line 6))
+  Downloading httpx-0.28.1-py3-none-any.whl.metadata (7.1 kB)
+Collecting jiter<1,>=0.10.0 (from openai>=1.40.0->-r requirements.txt (line 6))
+  Downloading jiter-0.11.0-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.2 kB)
+Collecting sniffio (from openai>=1.40.0->-r requirements.txt (line 6))
+  Downloading sniffio-1.3.1-py3-none-any.whl.metadata (3.9 kB)
+Collecting tqdm>4 (from openai>=1.40.0->-r requirements.txt (line 6))
+  Downloading tqdm-4.67.1-py3-none-any.whl.metadata (57 kB)
+Collecting httptools>=0.6.3 (from uvicorn[standard]<1.0,>=0.23->-r requirements.txt (line 2))
+  Downloading httptools-0.7.1-cp313-cp313-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (3.5 kB)
+Requirement already satisfied: pyyaml>=5.1 in /usr/lib/python3/dist-packages (from uvicorn[standard]<1.0,>=0.23->-r requirements.txt (line 2)) (6.0.2)
+Collecting uvloop>=0.15.1 (from uvicorn[standard]<1.0,>=0.23->-r requirements.txt (line 2))
+  Downloading uvloop-0.21.0-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.9 kB)
+Collecting watchfiles>=0.13 (from uvicorn[standard]<1.0,>=0.23->-r requirements.txt (line 2))
+  Downloading watchfiles-1.1.1-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.9 kB)
+Collecting websockets>=10.4 (from uvicorn[standard]<1.0,>=0.23->-r requirements.txt (line 2))
+  Downloading websockets-15.0.1-cp313-cp313-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.8 kB)
+Collecting idna>=2.8 (from anyio<5,>=3.5.0->openai>=1.40.0->-r requirements.txt (line 6))
+  Downloading idna-3.11-py3-none-any.whl.metadata (8.4 kB)
+Collecting certifi (from httpx<1,>=0.23.0->openai>=1.40.0->-r requirements.txt (line 6))
+  Downloading certifi-2025.10.5-py3-none-any.whl.metadata (2.5 kB)
+Collecting httpcore==1.* (from httpx<1,>=0.23.0->openai>=1.40.0->-r requirements.txt (line 6))
+  Downloading httpcore-1.0.9-py3-none-any.whl.metadata (21 kB)
+Downloading fastapi-0.119.0-py3-none-any.whl (107 kB)
+Downloading uvicorn-0.37.0-py3-none-any.whl (67 kB)
+Downloading sqlalchemy-2.0.44-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.3/3.3 MB 85.6 MB/s eta 0:00:00
+
+Downloading pydantic-2.12.2-py3-none-any.whl (460 kB)
+Downloading pydantic_core-2.41.4-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 79.3 MB/s eta 0:00:00
+
+Downloading pydantic_settings-2.11.0-py3-none-any.whl (48 kB)
+Downloading openai-2.4.0-py3-none-any.whl (1.0 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.0/1.0 MB 90.7 MB/s eta 0:00:00
+
+Downloading python_dotenv-1.1.1-py3-none-any.whl (20 kB)
+Downloading aiofiles-23.2.1-py3-none-any.whl (15 kB)
+Downloading annotated_types-0.7.0-py3-none-any.whl (13 kB)
+Downloading anyio-4.11.0-py3-none-any.whl (109 kB)
+Downloading click-8.3.0-py3-none-any.whl (107 kB)
+Downloading distro-1.9.0-py3-none-any.whl (20 kB)
+Downloading greenlet-3.2.4-cp313-cp313-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (610 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 610.5/610.5 kB 42.1 MB/s eta 0:00:00
+
+Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+Downloading httptools-0.7.1-cp313-cp313-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (478 kB)
+Downloading httpx-0.28.1-py3-none-any.whl (73 kB)
+Downloading httpcore-1.0.9-py3-none-any.whl (78 kB)
+Downloading jiter-0.11.0-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (347 kB)
+Downloading sniffio-1.3.1-py3-none-any.whl (10 kB)
+Downloading starlette-0.48.0-py3-none-any.whl (73 kB)
+Downloading tqdm-4.67.1-py3-none-any.whl (78 kB)
+Downloading typing_extensions-4.15.0-py3-none-any.whl (44 kB)
+Downloading typing_inspection-0.4.2-py3-none-any.whl (14 kB)
+Downloading uvloop-0.21.0-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (4.7 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.7/4.7 MB 75.4 MB/s eta 0:00:00
+
+Downloading watchfiles-1.1.1-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (456 kB)
+Downloading websockets-15.0.1-cp313-cp313-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (182 kB)
+Downloading idna-3.11-py3-none-any.whl (71 kB)
+Downloading certifi-2025.10.5-py3-none-any.whl (163 kB)
+Installing collected packages: websockets, uvloop, typing-extensions, tqdm, sniffio, python-dotenv, jiter, idna, httptools, h11, greenlet, distro, click, certifi, annotated-types, aiofiles, uvicorn, typing-inspection, sqlalchemy, pydantic-core, httpcore, anyio, watchfiles, starlette, pydantic, httpx, pydantic-settings, openai, fastapi
+  WARNING: The script websockets is installed in '/home/ubuntu/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script tqdm is installed in '/home/ubuntu/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script dotenv is installed in '/home/ubuntu/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script distro is installed in '/home/ubuntu/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script uvicorn is installed in '/home/ubuntu/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script watchfiles is installed in '/home/ubuntu/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script httpx is installed in '/home/ubuntu/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script openai is installed in '/home/ubuntu/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script fastapi is installed in '/home/ubuntu/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+Successfully installed aiofiles-23.2.1 annotated-types-0.7.0 anyio-4.11.0 certifi-2025.10.5 click-8.3.0 distro-1.9.0 fastapi-0.119.0 greenlet-3.2.4 h11-0.16.0 httpcore-1.0.9 httptools-0.7.1 httpx-0.28.1 idna-3.11 jiter-0.11.0 openai-2.4.0 pydantic-2.12.2 pydantic-core-2.41.4 pydantic-settings-2.11.0 python-dotenv-1.1.1 sniffio-1.3.1 sqlalchemy-2.0.44 starlette-0.48.0 tqdm-4.67.1 typing-extensions-4.15.0 typing-inspection-0.4.2 uvicorn-0.37.0 uvloop-0.21.0 watchfiles-1.1.1 websockets-15.0.1
